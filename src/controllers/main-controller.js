@@ -1,6 +1,5 @@
-let panes = require("../data/panes");
-
-let baseUrl = "http://localhost:3418"
+const products = require("../services/products-services")
+let baseUrl = "http://localhost:3031"
 let url = '/api'
 
 const controller = {
@@ -13,14 +12,16 @@ const controller = {
         });
     },
     apiProducts: (req,res) => {
+        let panes = products.listarPanes()
         res.send(panes);
     },
     apiProductDetail: (req,res) => {
         const id = req.params.id;
-        let panAEnviar = panes.find((pan) => {
-            return pan.id == id;
-        })
+        let panAEnviar = products.buscarPan(id)
         res.send(panAEnviar || {});
     },
+    apiProductCreate: (req,res) => {
+        res.send(req.body)
+    }
 }
 module.exports = controller;
