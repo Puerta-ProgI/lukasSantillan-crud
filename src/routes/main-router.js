@@ -13,4 +13,6 @@ router.get(url+'/productos'+'/:id', mainController.apiProductDetail);
 
 router.post(url+'/productos', mainController.apiProductCreate);
 
+router.delete(url+'/productos'+'/:id', mainController.apiProductDelete)
+
 module.exports = router;

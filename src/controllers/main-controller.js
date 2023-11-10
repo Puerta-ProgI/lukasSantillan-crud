@@ -11,17 +11,24 @@ const controller = {
             productos: baseUrl + url + "/productos",
         });
     },
-    apiProducts: (req,res) => {
-        let panes = products.listarPanes()
+    apiProducts: async (req,res) => {
+        let panes = await products.listarPanes()
         res.send(panes);
     },
-    apiProductDetail: (req,res) => {
+    apiProductDetail: async (req,res) => {
         const id = req.params.id;
-        let panAEnviar = products.buscarPan(id)
+        let panAEnviar = await products.buscarPan(id)
         res.send(panAEnviar || {});
     },
     apiProductCreate: (req,res) => {
-        res.send(req.body)
+        products.create(req.body)
+
+        res.redirect("/api/productos")
+    },
+    apiProductDelete: (req,res) => {
+        products.delete(req.params.id)
+
+        res.redirect("/api/productos")
     }
 }
 module.exports = controller;
