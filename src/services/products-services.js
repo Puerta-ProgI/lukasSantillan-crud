@@ -14,23 +14,44 @@ const service = {
         return pan || {}
     },
     //create
-    create: (data) =>{
+    create: async (data) =>{
         let panACrear = {
-            id: panes[panes.length-1].id+1,
+            // id: panes[panes.length-1].id+1,
             name: data.name,
-            category: data.category,
+            // category: data.category,
             description: data.description,
-            precio: data.precio
+            // precio: data.precio
         }
-        panes.push(panACrear)
+        // panes.push(panACrear)
+        db.Products.create(panACrear)
     },
     //destroy
-    delete: (id) =>{
-        let panesFiltrados = panes.filter((pan)=> pan.id != id)
-        panes = panesFiltrados
-        return panes
-    }
+    delete: async (id) =>{
+        // let panesFiltrados = panes.filter((pan)=> pan.id != id)
+        // panes = panesFiltrados
+        // return panes
+        db.Products.destroy({
+            where: {
+                id: id
+            }
+        })
+    },
     //update
+    update: async (data,id) => {
+        let panAEditar = {
+            // id: panes[panes.length-1].id+1,
+            name: data.name,
+            // category: data.category,
+            description: data.description,
+            // precio: data.precio
+        }    
+
+        db.Products.update(panAEditar, {
+            where: {
+                id: id
+            }
+        })
+    }
 };
 
 module.exports = service
