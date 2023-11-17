@@ -20,7 +20,7 @@ const service = {
             name: data.name,
             // category: data.category,
             description: data.description,
-            // precio: data.precio
+            price: data.price
         }
         // panes.push(panACrear)
         db.Products.create(panACrear)
@@ -43,8 +43,8 @@ const service = {
             name: data.name,
             // category: data.category,
             description: data.description,
-            // precio: data.precio
-        }    
+            precio: data.precio
+        }     
 
         db.Products.update(panAEditar, {
             where: {

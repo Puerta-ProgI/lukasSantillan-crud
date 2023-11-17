@@ -14,10 +14,10 @@ module.exports = (sequelize,dataTypes)=>{
             type: dataTypes.STRING,
             allowNull: false
         },
-        /* price: {
-            type: dataTypes.INTEGER,
+        price: {
+            type: dataTypes.INTEGER, 
             allowNull: false
-        } */
+        }
     }
     let config = {
         tableName: "products",
